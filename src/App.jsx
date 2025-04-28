@@ -32,22 +32,11 @@ const exhibitionDetails = {
 };
 
 export default function App() {
-  const [selectedShow, setSelectedShow] = useState(null);
   const [nav, setNav] = useState("home");
-  const [form, setForm] = useState({ name: "", email: "", time: "" });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleBook = (show) => {
-    setSelectedShow(show);
-    setNav("book");
-    setSubmitted(false);
-    setForm({ name: "", email: "", time: "" });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+  const [bookName, setBookName] = useState("");
+  const [bookEmail, setBookEmail] = useState("");
+  const [bookDate, setBookDate] = useState("");
+  const [bookTime, setBookTime] = useState("");
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -170,47 +159,51 @@ export default function App() {
         )}
 
         {nav === "book" && (
-          <div className="bg-white rounded shadow p-6 max-w-xl mx-auto mt-8">
-            <h2 className="text-xl font-semibold mb-4">Book Appointment</h2>
-            {selectedShow && (
-              <div className="mb-4">
-                <h3 className="font-bold">{selectedShow.title}</h3>
-                <p>By {selectedShow.artist} &middot; {selectedShow.date}</p>
+          <section className="max-w-md mx-auto bg-white rounded shadow p-8 mt-12 flex flex-col gap-6">
+            <h2 className="text-2xl font-bold text-center text-[#0e355e] mb-4">Book Appointment</h2>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <button
+                  className="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-900"
+                  onClick={() => {
+                    const name = prompt('Enter your name:');
+                    if (name !== null) setBookName(name);
+                  }}
+                >Add Name</button>
+                <span className="text-gray-700">{bookName}</span>
               </div>
-            )}
-            {submitted ? (
-              <div className="text-green-600 font-semibold">Appointment booked! Check your email for confirmation.</div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <input
-                  type="text"
-                  required
-                  placeholder="Your Name"
-                  className="w-full p-2 border rounded"
-                  value={form.name}
-                  onChange={e => setForm({ ...form, name: e.target.value })}
-                />
-                <input
-                  type="email"
-                  required
-                  placeholder="Your Email"
-                  className="w-full p-2 border rounded"
-                  value={form.email}
-                  onChange={e => setForm({ ...form, email: e.target.value })}
-                />
-                <input
-                  type="datetime-local"
-                  required
-                  placeholder="Preferred Time"
-                  className="w-full p-2 border rounded"
-                  value={form.time}
-                  onChange={e => setForm({ ...form, time: e.target.value })}
-                />
-                <button type="submit" className="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Book</button>
-              </form>
-            )}
-            <button className="mt-4 text-blue-600 hover:underline" onClick={() => setNav("home")}>Back to Shows</button>
-          </div>
+              <div className="flex items-center gap-3">
+                <button
+                  className="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-900"
+                  onClick={() => {
+                    const email = prompt('Enter your email:');
+                    if (email !== null) setBookEmail(email);
+                  }}
+                >Add Email</button>
+                <span className="text-gray-700">{bookEmail}</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <button
+                  className="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-900"
+                  onClick={() => {
+                    const date = prompt('Enter date (YYYY-MM-DD):');
+                    if (date !== null) setBookDate(date);
+                  }}
+                >Add Date</button>
+                <span className="text-gray-700">{bookDate}</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <button
+                  className="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-900"
+                  onClick={() => {
+                    const time = prompt('Enter time (HH:MM):');
+                    if (time !== null) setBookTime(time);
+                  }}
+                >Add Time</button>
+                <span className="text-gray-700">{bookTime}</span>
+              </div>
+            </div>
+          </section>
         )}
       </main>
 
