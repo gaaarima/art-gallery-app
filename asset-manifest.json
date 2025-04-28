@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/art-gallery-app/static/css/main.61ed3b87.css",
+    "main.js": "/art-gallery-app/static/js/main.3187475b.js",
+    "index.html": "/art-gallery-app/index.html",
+    "main.61ed3b87.css.map": "/art-gallery-app/static/css/main.61ed3b87.css.map",
+    "main.3187475b.js.map": "/art-gallery-app/static/js/main.3187475b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.61ed3b87.css",
+    "static/js/main.3187475b.js"
+  ]
+}
